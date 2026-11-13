@@ -1,59 +1,56 @@
-# RecuperoServiziApiRest
+# Recupero servizi API REST
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.26.
+## Descrizione
 
-## Development server
+L'applicazione Angular recupera e visualizza i todo tramite l'API di prova
+[JSONPlaceholder](https://jsonplaceholder.typicode.com/todos). È possibile consultare
+l'elenco, aprire il dettaglio di un todo e navigare tra gli elementi precedenti e
+successivi.
 
-To start a local development server, run:
+## Come avviare
 
 ```bash
+npm install
 ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Con `ng serve` l'app è disponibile su `http://localhost:4200/`.
 
-## Running unit tests
+## Struttura delle cartelle
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- `src/app/models/`: contiene il modello `Todo`.
+- `src/app/services/`: contiene `TodoService`, che comunica con l'API e gestisce
+  caricamento, elenco, dettaglio ed errori.
+- `src/app/pages/elenco/`: contiene la pagina con l'elenco dei todo.
+- `src/app/pages/dettaglio/`: contiene la pagina del dettaglio e la navigazione
+  tra gli id.
 
-```bash
-ng test
-```
+Il servizio usa signal privati per mantenere lo stato. I signal esposti ai
+componenti sono ottenuti con `asReadonly()`, così i componenti possono leggerli
+ma non modificarli. I valori derivati possono essere rappresentati con
+`computed`, che ricalcola automaticamente il risultato quando cambiano i signal
+da cui dipende.
 
-## Running end-to-end tests
+## Membri del gruppo
 
-For end-to-end (e2e) testing, run:
+| Nome | Username GitHub | Parte svolta | Strumento AI usato |
+| --- | --- | --- | --- |
+| Wasef | [USERNAME WASEF] | Base del progetto, servizio e routing | [STRUMENTO WASEF] |
+| Franco | [USERNAME FRANCO] | Pagina elenco | [STRUMENTO FRANCO] |
+| Villanueva | [USERNAME VILLANUEVA] | Pagina dettaglio e README | [STRUMENTO VILLANUEVA] |
 
-```bash
-ng e2e
-```
+## Nota su JSONPlaceholder
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+JSONPlaceholder non salva i dati creati con `POST`. Il nuovo elemento ha id `201`
+e aprirne il dettaglio dà errore `404`. È un comportamento atteso del servizio
+di prova.
 
-## Additional Resources
+## Strumenti usati
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Ogni membro ha usato l'AI indicata nella tabella per scrivere la propria parte e
+la spiega a voce in laboratorio:
+
+- Wasef: [STRUMENTO WASEF]
+- Franco: [STRUMENTO FRANCO]
+- Villanueva: [STRUMENTO VILLANUEVA]
