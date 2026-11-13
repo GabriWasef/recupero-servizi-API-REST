@@ -1,0 +1,93 @@
+.pagina-dettaglio {
+	max-width: 720px;
+	margin: 0 auto;
+	padding: 2rem 1.25rem;
+	color: #24313a;
+}
+
+h1 {
+	margin: 1.5rem 0 1rem;
+	color: #164e63;
+}
+
+.link-elenco {
+	color: #0f766e;
+	font-weight: 600;
+}
+
+.scheda-dettaglio {
+	padding: 1.5rem;
+	border: 1px solid #cbd5d8;
+	border-radius: 8px;
+	background: #f4faf9;
+}
+
+h2 {
+	margin-top: 0;
+	overflow-wrap: anywhere;
+}
+
+dl {
+	display: grid;
+	gap: 0.75rem;
+	margin: 0;
+}
+
+dl div {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid #d8e2e3;
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd {
+	margin: 0;
+}
+
+.messaggio,
+.errore {
+	padding: 1rem;
+	border-radius: 6px;
+}
+
+.messaggio {
+	background: #e0f2fe;
+}
+
+.errore {
+	background: #fee2e2;
+	color: #991b1b;
+}
+
+.navigazione {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+button {
+	padding: 0.65rem 1rem;
+	border: 0;
+	border-radius: 6px;
+	background: #0f766e;
+	color: white;
+	cursor: pointer;
+	font: inherit;
+}
+
+button:disabled {
+	background: #94a3a8;
+	cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+	.navigazione {
+		flex-direction: column;
+	}
+}
