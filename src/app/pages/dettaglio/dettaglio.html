@@ -1,1 +1,37 @@
-<h1>Dettaglio</h1>
+<main class="pagina-dettaglio">
+	<a routerLink="/elenco" class="link-elenco">Torna all'elenco</a>
+	<h1>Dettaglio todo</h1>
+
+	@if (servizio.caricamento()) {
+		<p class="messaggio">Caricamento in corso...</p>
+	} @else if (servizio.errore()) {
+		<p class="errore">{{ servizio.errore() }}</p>
+	} @else if (servizio.elemento(); as elemento) {
+		<section class="scheda-dettaglio" aria-labelledby="titolo-todo">
+			<h2 id="titolo-todo">{{ elemento.title }}</h2>
+			<dl>
+				<div>
+					<dt>ID</dt>
+					<dd>{{ elemento.id }}</dd>
+				</div>
+				<div>
+					<dt>Completato</dt>
+					<dd>{{ elemento.completed ? 'Sì' : 'No' }}</dd>
+				</div>
+				<div>
+					<dt>User ID</dt>
+					<dd>{{ elemento.userId }}</dd>
+				</div>
+			</dl>
+		</section>
+	}
+
+	<nav class="navigazione" aria-label="Navigazione todo">
+		<button type="button" (click)="vaiA(id - 1)" [disabled]="id === 1">
+			Precedente
+		</button>
+		<button type="button" (click)="vaiA(id + 1)" [disabled]="id === 200">
+			Successivo
+		</button>
+	</nav>
+</main>
