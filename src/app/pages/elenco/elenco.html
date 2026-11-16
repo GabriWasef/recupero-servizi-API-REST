@@ -1,1 +1,22 @@
 <h1>Elenco</h1>
+
+@if (servizio.caricamento()) {
+  <p class="stato">Caricamento in corso...</p>
+} @else if (servizio.errore() !== null) {
+  <!-- Il messaggio arriva già pronto dal servizio -->
+  <p class="stato errore">{{ servizio.errore() }}</p>
+} @else {
+  <ul class="lista">
+    <!-- track $index: i todo creati hanno tutti id 201, quindi l'id non è univoco -->
+    @for (todo of servizio.todos(); track $index) {
+      <li>
+        <a [routerLink]="'/risorsa/' + todo.id">
+          <span class="stato-todo" [class.fatto]="todo.completed">{{ todo.completed ? '✔' : '○' }}</span>
+          {{ todo.title }}
+        </a>
+      </li>
+    } @empty {
+      <li class="vuoto">Nessun elemento da mostrare.</li>
+    }
+  </ul>
+}
