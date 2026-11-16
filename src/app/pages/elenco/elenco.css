@@ -1,0 +1,107 @@
+:host {
+  display: block;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: system-ui, sans-serif;
+}
+
+.nuovo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.nuovo input[type='text'] {
+  flex: 1 1 240px;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #90a4ae;
+  border-radius: 6px;
+}
+
+.nuovo button {
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #1565c0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nuovo button:disabled {
+  background: #b0bec5;
+  cursor: not-allowed;
+}
+
+.stato {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  background: #eef2f7;
+}
+
+.errore {
+  background: #fdecea;
+  color: #b71c1c;
+}
+
+.conteggi {
+  color: #444;
+}
+
+.filtri {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filtri button {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #90a4ae;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.filtri button.attivo {
+  background: #1565c0;
+  border-color: #1565c0;
+  color: #fff;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lista li {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.lista a {
+  display: block;
+  padding: 0.6rem 0.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.lista a:hover {
+  background: #f5f7fa;
+}
+
+.vuoto {
+  padding: 0.75rem 0.25rem;
+  color: #666;
+}
+
+.stato-todo {
+  display: inline-block;
+  width: 1.5rem;
+  color: #888;
+}
+
+.stato-todo.fatto {
+  color: #2e7d32;
+}

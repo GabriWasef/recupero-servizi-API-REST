@@ -1,1 +1,44 @@
 <h1>Elenco</h1>
+
+<form class="nuovo" (ngSubmit)="creaTodo()">
+  <input type="text" name="titolo" placeholder="Titolo del nuovo todo" required [(ngModel)]="nuovoTitolo" />
+  <label>
+    <input type="checkbox" name="completato" [(ngModel)]="nuovoCompletato" />
+    Completato
+  </label>
+  <button type="submit" [disabled]="nuovoTitolo.trim() === ''">Aggiungi</button>
+</form>
+
+@if (servizio.caricamento()) {
+  <p class="stato">Caricamento in corso...</p>
+} @else if (servizio.errore() !== null) {
+  <!-- Il messaggio arriva già pronto dal servizio -->
+  <p class="stato errore">{{ servizio.errore() }}</p>
+} @else {
+  <p class="conteggi">
+    Totale: <strong>{{ totale() }}</strong> · Completati: <strong>{{ completati() }}</strong> · Da fare:
+    <strong>{{ daFare() }}</strong>
+  </p>
+
+  <div class="filtri">
+    <button type="button" [class.attivo]="filtro() === 'tutti'" (click)="impostaFiltro('tutti')">Tutti</button>
+    <button type="button" [class.attivo]="filtro() === 'completati'" (click)="impostaFiltro('completati')">
+      Completati
+    </button>
+    <button type="button" [class.attivo]="filtro() === 'da-fare'" (click)="impostaFiltro('da-fare')">Da fare</button>
+  </div>
+
+  <ul class="lista">
+    <!-- track $index: i todo creati hanno tutti id 201, quindi l'id non è univoco -->
+    @for (todo of visibili(); track $index) {
+      <li>
+        <a [routerLink]="'/risorsa/' + todo.id">
+          <span class="stato-todo" [class.fatto]="todo.completed">{{ todo.completed ? '✔' : '○' }}</span>
+          {{ todo.title }}
+        </a>
+      </li>
+    } @empty {
+      <li class="vuoto">Nessun elemento da mostrare.</li>
+    }
+  </ul>
+}
