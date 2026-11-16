@@ -1,5 +1,14 @@
 <h1>Elenco</h1>
 
+<form class="nuovo" (ngSubmit)="creaTodo()">
+  <input type="text" name="titolo" placeholder="Titolo del nuovo todo" required [(ngModel)]="nuovoTitolo" />
+  <label>
+    <input type="checkbox" name="completato" [(ngModel)]="nuovoCompletato" />
+    Completato
+  </label>
+  <button type="submit" [disabled]="nuovoTitolo.trim() === ''">Aggiungi</button>
+</form>
+
 @if (servizio.caricamento()) {
   <p class="stato">Caricamento in corso...</p>
 } @else if (servizio.errore() !== null) {
