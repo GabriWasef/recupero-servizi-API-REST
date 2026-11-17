@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
+import { Observable, finalize } from 'rxjs';
 
 import { Todo } from '../models/todo';
 
@@ -21,43 +22,30 @@ export class TodoService {
   errore = this._errore.asReadonly();
 
   caricaElenco(): void {
-    this._caricamento.set(true);
-    this._errore.set(null);
-
-    this.http.get<Todo[]>(this.url).subscribe({
-      next: (dati) => {
-        this._todos.set(dati);
-        this._caricamento.set(false);
-      },
-      error: (e: HttpErrorResponse) => {
-        this._errore.set(this.messaggioErrore(e));
-        this._caricamento.set(false);
-      },
-    });
+    this.carica(this.http.get<Todo[]>(this.url), (dati) => this._todos.set(dati));
   }
 
   caricaElemento(id: number): void {
     this._elemento.set(null);
-    this._caricamento.set(true);
-    this._errore.set(null);
-
-    this.http.get<Todo>(`${this.url}/${id}`).subscribe({
-      next: (dato) => {
-        this._elemento.set(dato);
-        this._caricamento.set(false);
-      },
-      error: (e: HttpErrorResponse) => {
-        this._errore.set(this.messaggioErrore(e));
-        this._caricamento.set(false);
-      },
-    });
+    this.carica(this.http.get<Todo>(`${this.url}/${id}`), (dato) => this._elemento.set(dato));
   }
 
-  creaTodo(dati: { userId: number; title: string; completed: boolean }): void {
+  creaTodo(dati: Omit<Todo, 'id'>): void {
     this.http.post<Todo>(this.url, dati).subscribe({
       // JSONPlaceholder non salva davvero i dati e risponde sempre con id 201:
       // aggiungiamo la risposta in testa all'elenco solo in locale.
       next: (creato) => this._todos.update((lista) => [creato, ...lista]),
+      error: (e: HttpErrorResponse) => this._errore.set(this.messaggioErrore(e)),
+    });
+  }
+
+  // Gestione comune di caricamento ed errore per le richieste di lettura
+  private carica<T>(richiesta: Observable<T>, alSuccesso: (dati: T) => void): void {
+    this._caricamento.set(true);
+    this._errore.set(null);
+
+    richiesta.pipe(finalize(() => this._caricamento.set(false))).subscribe({
+      next: alSuccesso,
       error: (e: HttpErrorResponse) => this._errore.set(this.messaggioErrore(e)),
     });
   }
