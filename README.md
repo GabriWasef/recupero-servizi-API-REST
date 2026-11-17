@@ -36,9 +36,9 @@ da cui dipende.
 
 | Nome | Username GitHub | Parte svolta | Strumento AI usato |
 | --- | --- | --- | --- |
-| Wasef | [USERNAME WASEF] | Base del progetto, servizio e routing | [STRUMENTO WASEF] |
-| Franco | [USERNAME FRANCO] | Pagina elenco | [STRUMENTO FRANCO] |
-| Villanueva | [USERNAME VILLANUEVA] | Pagina dettaglio e README | [STRUMENTO VILLANUEVA] |
+| Wasef | GabriWasef & Gabriele1807 | Base del progetto, servizio e routing | Claude |
+| Franco | angxxxxss | Pagina elenco | Claude |
+| Villanueva | villanuevaprincelab | Pagina dettaglio e README | Copilot |
 
 ## Nota su JSONPlaceholder
 
@@ -51,6 +51,6 @@ di prova.
 Ogni membro ha usato l'AI indicata nella tabella per scrivere la propria parte e
 la spiega a voce in laboratorio:
 
-- Wasef: [STRUMENTO WASEF]
-- Franco: [STRUMENTO FRANCO]
-- Villanueva: [STRUMENTO VILLANUEVA]
+- Wasef: Claude
+- Franco: Claude
+- Villanueva: Copilot
